@@ -16,20 +16,32 @@ export default {
   name: "EventCard",
   extends: {},
   mixins: [],
-  props: [],
-  data() {
-    return {
-      event: {
-        id: 1,
-        title: "Beach Cleanup",
-        date: "Tues Mar 15, 2022",
-        time: "18:00",
-        attendees: [
-          { id: "1", name: "Igor" },
-          { id: "2", name: "Lisandra" },
-        ],
+  props: {
+    event: {
+      id: {
+        type: Number,
+        required: true,
       },
-    };
+      title: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: String,
+        required: true,
+      },
+      time: {
+        type: String,
+        required: true,
+      },
+      attendees: {
+        type: Array,
+        required: true,
+      },
+    },
+  },
+  data() {
+    return {};
   },
   components: {},
   methods: {},
