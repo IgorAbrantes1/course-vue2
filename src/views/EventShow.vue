@@ -35,25 +35,13 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
-
 export default {
   name: "EventShow",
   props: {
-    id: {
-      type: [String, Number],
+    event: {
+      type: Object,
       require: true,
     },
-  },
-  created() {
-    this.fetchEvent(this.id);
-  },
-  computed: mapState({
-    event: (state) => state.event.event,
-  }),
-  components: {},
-  methods: {
-    ...mapActions("event", ["fetchEvent"]),
   },
 };
 </script>
@@ -62,6 +50,7 @@ export default {
 .location {
   margin-top: 22px;
 }
+
 .event-header > .title {
   margin: 0;
 }

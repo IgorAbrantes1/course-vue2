@@ -57,14 +57,6 @@ export default {
 
 .icon-wrapper > .svg {
   margin-right: 6px;
-}
-
-.icon-wrapper .icon {
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  margin-right: 6px;
+  margin-left: 10px;
 }
 </style>

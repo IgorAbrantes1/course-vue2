@@ -12,17 +12,6 @@
 <script>
 export default {
   name: "NavBar",
-  extends: {},
-  mixins: [],
-  props: [],
-  data() {
-    return {};
-  },
-  components: {},
-  methods: {},
-  computed: {},
-  created() {},
-  beforeDestroy() {},
 };
 </script>
 

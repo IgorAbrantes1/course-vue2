@@ -2,15 +2,9 @@ import ApiErrorWithResponse from "@/services/ApiErrorWithResponse";
 import { configApi } from "@/services/config";
 import store from "@/store";
 import axios from "axios";
-import NProgress from "nprogress";
 
 export default () => {
   let api = axios.create(configApi);
-
-  api.interceptors.request.use((config) => {
-    NProgress.start();
-    return config;
-  });
 
   api.interceptors.response.use(
     (response) => {
@@ -65,11 +59,9 @@ export default () => {
         return Promise.reject(new ApiErrorWithResponse(message, response));
       }
 
-      NProgress.done();
       return response;
     },
     (error) => {
-      NProgress.done();
       return Promise.reject(error);
     }
   );
