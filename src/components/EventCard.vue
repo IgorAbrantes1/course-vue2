@@ -4,9 +4,11 @@
     :to="{ name: 'EventShow', params: { id: event.id } }"
   >
     <div class="event-card -shadow">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <span class="eyebrow">{{ event.date }} at {{ event.time }}</span>
       <h4 class="title">{{ event.title }}</h4>
-      <BaseIcon name="users">{{ event.attendees.length }} attending</BaseIcon>
+      <BaseIcon name="users">
+        <span class="attendees">{{ event.attendees.length }} attending</span>
+      </BaseIcon>
     </div>
   </router-link>
 </template>
@@ -19,7 +21,7 @@ export default {
   props: {
     event: {
       id: {
-        type: Number,
+        type: [String, Number],
         required: true,
       },
       title: {
@@ -52,6 +54,10 @@ export default {
 </script>
 
 <style scoped>
+.attendees {
+  margin: 0 0 5px 0;
+}
+
 .event-card {
   padding: 20px;
   margin-bottom: 24px;

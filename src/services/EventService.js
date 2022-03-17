@@ -1,19 +1,13 @@
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: "http://localhost:3000",
-  withCredentials: false,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-});
+import Api from "@/services/Api";
 
 export default {
-  getEvents() {
-    return api.get("/events");
+  getEvents(perPage, page) {
+    return Api().get(`/events?_limit=${perPage}&_page=${page}`);
   },
   getEvent(id) {
-    return api.get(`/events/${id}`);
+    return Api().get(`/events/${id}`);
+  },
+  postEvent(event) {
+    return Api().post("/events", event);
   },
 };

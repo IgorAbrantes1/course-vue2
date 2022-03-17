@@ -5,20 +5,21 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/events",
+    alias: "/",
     name: "EventList",
     component: () => import("@/views/EventList.vue"),
+  },
+  {
+    path: "/event/create",
+    name: "EventCreate",
+    component: () => import("@/views/EventCreate.vue"),
   },
   {
     path: "/event/:id",
     name: "EventShow",
     props: true,
     component: () => import("@/views/EventShow.vue"),
-  },
-  {
-    path: "/event/create",
-    name: "EventCreate",
-    component: () => import("@/views/EventCreate.vue"),
   },
 ];
 

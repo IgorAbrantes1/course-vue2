@@ -1,13 +1,15 @@
 <template>
   <div>
     <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <span class="eyebrow">{{ event.date }} at {{ event.time }}</span>
       <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer }}</h5>
+      <h5>Organized by {{ event.organizer ? event.organizer.name : "" }}</h5>
       <h5>Category: {{ event.category }}</h5>
     </div>
 
-    <BaseIcon name="map"><h2>Location</h2></BaseIcon>
+    <BaseIcon name="map">
+      <h2 class="location">Location</h2>
+    </BaseIcon>
 
     <address>{{ event.location }}</address>
 
@@ -16,9 +18,9 @@
 
     <h2>
       Attendees
-      <span class="badge -fill-gradient">{{
-        event.attendees ? event.attendees.length : 0
-      }}</span>
+      <span class="badge -fill-gradient">
+        {{ event.attendees ? event.attendees.length : 0 }}
+      </span>
     </h2>
     <ul class="list-group">
       <li
@@ -33,33 +35,45 @@
 </template>
 
 <script>
-import EventService from "@/services/EventService";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "EventShow",
-  data() {
-    return {
-      event: {},
-    };
-  },
   props: {
     id: {
-      // eslint-disable-next-line vue/require-prop-type-constructor
-      type: String | Number,
+      type: [String, Number],
       require: true,
     },
   },
   created() {
-    EventService.getEvent(this.id)
-      .then((response) => {
-        this.event = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.fetchEvent(this.id);
   },
+  computed: mapState({
+    event: (state) => state.event.event,
+  }),
   components: {},
+  methods: {
+    ...mapActions("event", ["fetchEvent"]),
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.location {
+  margin-top: 22px;
+}
+.event-header > .title {
+  margin: 0;
+}
+
+.list-group {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-group > .list-item {
+  padding: 1em 0;
+  border-bottom: solid 1px #e5e5e5;
+}
+</style>
