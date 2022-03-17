@@ -8,5 +8,4 @@ export const configApi = {
   },
   validateStatus: (status) => status < 500,
   timeout: 5000,
-  timeoutErrorMessage: "Tempo limite de conexão",
 };

@@ -23,11 +23,35 @@ const routes = [
     props: true,
     component: () => import("@/views/EventShow.vue"),
     beforeEnter(routeTo, routeFrom, next) {
-      store.dispatch("event/fetchEvent", routeTo.params.id).then((event) => {
-        routeTo.params.event = event;
-        next();
-      });
+      store
+        .dispatch("event/fetchEvent", routeTo.params.id)
+        .then((event) => {
+          routeTo.params.event = event;
+          next();
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 404) {
+            next({ name: "404", params: { resource: "event" } });
+          } else {
+            next({ name: "NetworkIssue" });
+          }
+        });
     },
+  },
+  {
+    path: "/404",
+    name: "404",
+    props: true,
+    component: () => import("@/views/NotFound.vue"),
+  },
+  {
+    path: "/network-issue",
+    name: "NetworkIssue",
+    component: () => import("@/views/NetworkIssue.vue"),
+  },
+  {
+    path: "*",
+    redirect: { name: "404", params: { resource: "page" } },
   },
 ];
 
