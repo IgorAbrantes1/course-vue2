@@ -1,5 +1,5 @@
 export const configApi = {
-  baseURL: "http://localhost:8000/api",
+  baseURL: "https://igorabrantes.com/api",
   withCredentials: false,
   headers: {
     Accept: "application/json",
