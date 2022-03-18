@@ -32,7 +32,7 @@ export default {
   actions: {
     createEvent({ commit, dispatch }, event) {
       return EventService.postEvent(event)
-        .then(() => {
+        .then((response) => {
           commit("ADD_EVENT", event);
 
           const notification = {
@@ -40,6 +40,7 @@ export default {
             message: "Your event has been created successfully!",
           };
           dispatch("notification/add", notification, { root: true });
+          return response;
         })
         .catch((error) => {
           const notification = {
@@ -53,11 +54,13 @@ export default {
     fetchEvents({ commit, dispatch, state }, { page }) {
       return EventService.getEvents(state.perPage, page)
         .then((response) => {
+          commit("SET_EVENTS_TOTAL", response.data.total);
           commit(
-            "SET_EVENTS_TOTAL",
-            parseInt(response.headers["x-total-count"])
+            "SET_EVENTS",
+            Object.keys(response.data.events).map(
+              (e) => response.data.events[e]
+            )
           );
-          commit("SET_EVENTS", response.data);
         })
         .catch((error) => {
           const notification = {

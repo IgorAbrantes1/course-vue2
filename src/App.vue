@@ -275,8 +275,26 @@ select {
   appearance: none;
 }
 
-select:focus {
+select,
+input {
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+select:focus,
+input:focus {
   border-color: #39b982;
   outline: 0;
+  border-width: 2px;
+}
+
+.field {
+  margin-bottom: 24px;
+}
+.error {
+  border: 1px solid red;
+}
+.errorMessage {
+  color: red;
 }
 </style>

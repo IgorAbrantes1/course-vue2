@@ -285,24 +285,6 @@
       "date": "02/03/2022",
       "time": "19:00",
       "attendees": []
-    },
-    {
-      "id": 39903,
-      "user": {
-        "id": 1,
-        "name": "Igor"
-      },
-      "category": "animal welfare",
-      "organizer": {
-        "id": 1,
-        "name": "Igor"
-      },
-      "title": "Puppy Parade",
-      "description": "",
-      "location": "",
-      "date": "",
-      "time": "",
-      "attendees": []
     }
   ]
 }

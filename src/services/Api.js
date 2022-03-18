@@ -53,7 +53,6 @@ export default () => {
         }
         isError = true;
       }
-      console.log(message);
 
       if (isError) {
         return Promise.reject(new ApiErrorWithResponse(message, response));

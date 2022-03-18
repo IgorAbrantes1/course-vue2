@@ -28,8 +28,8 @@
 
 <script>
 import EventCard from "@/components/EventCard.vue";
-import { mapState } from "vuex";
 import store from "@/store";
+import { mapState } from "vuex";
 
 function getPageEvents(routeTo, next) {
   const currentPage = parseInt(routeTo.query.page) || 1;
